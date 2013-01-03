@@ -291,7 +291,7 @@ namespace CinguettioDataService
                     return false;
                 }
 
-                User friend = context.Users.FirstOrDefault(u => u.Id == friendId);
+                User friend = user.Friends.FirstOrDefault(u => u.Id == friendId);
 
                 if (friend == null)
                 {
