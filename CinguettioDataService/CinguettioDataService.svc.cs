@@ -279,6 +279,37 @@ namespace CinguettioDataService
         }
 
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json)]
+        public bool RemoveFriend(int userId, int friendId)
+        {
+            try
+            {
+                CinguettioDBEntities context = new CinguettioDBEntities();
+                User user = context.Users.FirstOrDefault(u => u.Id == userId);
+
+                if (user == null)
+                {
+                    return false;
+                }
+
+                User friend = context.Users.FirstOrDefault(u => u.Id == friendId);
+
+                if (friend == null)
+                {
+                    return false;
+                }
+
+                user.Friends.Remove(friend);
+                context.SaveChanges();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json)]
         public bool AreFriends(int userId, int friendId)
         {
             CinguettioDBEntities context = new CinguettioDBEntities();

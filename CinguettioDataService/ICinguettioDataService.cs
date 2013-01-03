@@ -49,6 +49,9 @@ namespace CinguettioDataService
         bool AddFriend(int userId, int friendId);
 
         [OperationContract]
+        bool RemoveFriend(int userId, int friendId);
+
+        [OperationContract]
         bool AreFriends(int userId, int friendId);
 
         [OperationContract]
