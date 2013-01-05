@@ -423,7 +423,7 @@ namespace CinguettioDataService
                 UserName = user.UserName,
                 Email = user.Email,
                 Latitude = user.Latitude.Value,
-                Longitude = user.Latitude.Value
+                Longitude = user.Longitude.Value
             };
         }
 
