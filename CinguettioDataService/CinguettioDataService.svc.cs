@@ -400,6 +400,34 @@ namespace CinguettioDataService
         }
 
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json)]
+        public UserModelWithPosition GetUserWithPosition(int userId)
+        {
+            CinguettioDBEntities context = new CinguettioDBEntities();
+
+            User user = context.Users.FirstOrDefault(u => u.Id == userId);
+            if (user == null)
+            {
+                return null;
+            }
+
+            if (!user.Latitude.HasValue || !user.Longitude.HasValue)
+            {
+                return null;
+            }
+
+            return new UserModelWithPosition()
+            {
+                Id = user.Id,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                UserName = user.UserName,
+                Email = user.Email,
+                Latitude = user.Latitude.Value,
+                Longitude = user.Latitude.Value
+            };
+        }
+
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json)]
         public void UpdatePost(int postId, string title, string content)
         {
             CinguettioDBEntities context = new CinguettioDBEntities();

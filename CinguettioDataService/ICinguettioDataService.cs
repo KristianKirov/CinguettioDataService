@@ -67,6 +67,9 @@ namespace CinguettioDataService
         UserModel GetUser(int userId);
 
         [OperationContract]
+        UserModelWithPosition GetUserWithPosition(int userId);
+
+        [OperationContract]
         void UpdatePost(int postId, string title, string content);
     }
 }
