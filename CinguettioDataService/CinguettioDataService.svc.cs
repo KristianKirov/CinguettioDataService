@@ -217,7 +217,7 @@ namespace CinguettioDataService
                     LastName = u.LastName,
                     UserName = u.UserName,
                     Email = u.Email,
-                    ImageUrl = user.ImageUrl
+                    ImageUrl = u.ImageUrl
                 });
         }
 
