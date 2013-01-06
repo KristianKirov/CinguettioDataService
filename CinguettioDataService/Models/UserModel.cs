@@ -24,5 +24,8 @@ namespace CinguettioDataService.Models
         [DataMember]
         public string LastName { get; set; }
 
+        [DataMember]
+        public string ImageUrl { get; set; }
+
     }
 }

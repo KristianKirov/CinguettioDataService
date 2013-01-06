@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CinguettioDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="CinguettioDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="CinguettioDBModelStoreContainer">
           <EntitySet Name="FriendsMap" EntityType="CinguettioDBModel.Store.FriendsMap" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Posts" EntityType="CinguettioDBModel.Store.Posts" store:Type="Tables" Schema="dbo" />
@@ -46,6 +46,7 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ImageUrl" Type="nvarchar" MaxLength="512" />
           <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="250" />
           <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="150" />
@@ -89,8 +90,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CinguettioDBModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -132,6 +132,7 @@
           <NavigationProperty Name="Posts" Relationship="CinguettioDBModel.FK_Posts_Users" FromRole="Users" ToRole="Posts" />
           <NavigationProperty Name="Friends" Relationship="CinguettioDBModel.FriendsMap" FromRole="Users" ToRole="Users1" />
           <NavigationProperty Name="HalfFriends" Relationship="CinguettioDBModel.FriendsMap" FromRole="Users1" ToRole="Users" />
+          <Property Type="String" Name="ImageUrl" MaxLength="512" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Posts_Users">
           <End Role="Users" Type="CinguettioDBModel.User" Multiplicity="1" />
@@ -163,7 +164,8 @@
             <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="Users"><EntityTypeMapping TypeName="CinguettioDBModel.User"><MappingFragment StoreEntitySet="Users">
-            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
             <ScalarProperty Name="UserName" ColumnName="UserName" />
             <ScalarProperty Name="Password" ColumnName="Password" />
             <ScalarProperty Name="Email" ColumnName="Email" />

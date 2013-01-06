@@ -558,6 +558,30 @@ namespace CinguettioDataService.Data
         private Nullable<global::System.Decimal> _Longitude;
         partial void OnLongitudeChanging(Nullable<global::System.Decimal> value);
         partial void OnLongitudeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ImageUrl
+        {
+            get
+            {
+                return _ImageUrl;
+            }
+            set
+            {
+                OnImageUrlChanging(value);
+                ReportPropertyChanging("ImageUrl");
+                _ImageUrl = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ImageUrl");
+                OnImageUrlChanged();
+            }
+        }
+        private global::System.String _ImageUrl;
+        partial void OnImageUrlChanging(global::System.String value);
+        partial void OnImageUrlChanged();
 
         #endregion
     

@@ -66,7 +66,8 @@ namespace CinguettioDataService
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 UserName = user.UserName,
-                Email = user.Email
+                Email = user.Email,
+                ImageUrl = user.ImageUrl
             };
         }
 
@@ -88,7 +89,7 @@ namespace CinguettioDataService
         }
 
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json)]
-        public void UpdateUserProfile(int userId, string firstName, string lastName, string email)
+        public void UpdateUserProfile(int userId, string firstName, string lastName, string email, string imageUrl)
         {
             CinguettioDBEntities context = new CinguettioDBEntities();
             User user = context.Users.FirstOrDefault(u => u.Id == userId);
@@ -113,6 +114,11 @@ namespace CinguettioDataService
                 user.Email = email;
             }
 
+            if (!string.IsNullOrEmpty(imageUrl) && imageUrl != user.ImageUrl)
+            {
+                user.ImageUrl = imageUrl;
+            }
+
             context.SaveChanges();
         }
 
@@ -135,7 +141,8 @@ namespace CinguettioDataService
                         FirstName = p.User.FirstName,
                         LastName = p.User.LastName,
                         UserName = p.User.UserName,
-                        Email = p.User.Email
+                        Email = p.User.Email,
+                        ImageUrl = p.User.ImageUrl
                     }
                 });
         }
@@ -159,7 +166,8 @@ namespace CinguettioDataService
                         FirstName = p.User.FirstName,
                         LastName = p.User.LastName,
                         UserName = p.User.UserName,
-                        Email = p.User.Email
+                        Email = p.User.Email,
+                        ImageUrl = p.User.ImageUrl
                     }
                 });
         }
@@ -185,7 +193,8 @@ namespace CinguettioDataService
                     UserName = u.UserName,
                     Email = u.Email,
                     Latitude = u.Latitude.Value,
-                    Longitude = u.Longitude.Value
+                    Longitude = u.Longitude.Value,
+                    ImageUrl = u.ImageUrl
                 });
         }
 
@@ -207,7 +216,8 @@ namespace CinguettioDataService
                     FirstName = u.FirstName,
                     LastName = u.LastName,
                     UserName = u.UserName,
-                    Email = u.Email
+                    Email = u.Email,
+                    ImageUrl = user.ImageUrl
                 });
         }
 
@@ -330,7 +340,8 @@ namespace CinguettioDataService
                     FirstName = u.FirstName,
                     LastName = u.LastName,
                     UserName = u.UserName,
-                    Email = u.Email
+                    Email = u.Email,
+                    ImageUrl = u.ImageUrl
                 });
         }
 
@@ -373,7 +384,8 @@ namespace CinguettioDataService
                     FirstName = post.User.FirstName,
                     LastName = post.User.LastName,
                     UserName = post.User.UserName,
-                    Email = post.User.Email
+                    Email = post.User.Email,
+                    ImageUrl = post.User.ImageUrl
                 }
             };
         }
@@ -395,7 +407,8 @@ namespace CinguettioDataService
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 UserName = user.UserName,
-                Email = user.Email
+                Email = user.Email,
+                ImageUrl = user.ImageUrl
             };
         }
 
@@ -423,7 +436,8 @@ namespace CinguettioDataService
                 UserName = user.UserName,
                 Email = user.Email,
                 Latitude = user.Latitude.Value,
-                Longitude = user.Longitude.Value
+                Longitude = user.Longitude.Value,
+                ImageUrl = user.ImageUrl
             };
         }
 
@@ -449,6 +463,23 @@ namespace CinguettioDataService
             }
 
             context.SaveChanges();
+        }
+
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json)]
+        public IEnumerable<UserModel> GetUsers(int from, int to)
+        {
+            CinguettioDBEntities context = new CinguettioDBEntities();
+
+            return context.Users.OrderBy(u => u.UserName).Skip(from).Take((to - from) + 1)
+                .Select(user => new UserModel()
+                {
+                    Id = user.Id,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    UserName = user.UserName,
+                    Email = user.Email,
+                    ImageUrl = user.ImageUrl
+                });
         }
     }
 }

@@ -22,7 +22,7 @@ namespace CinguettioDataService
         void UpdateUserPosition(int userId, decimal latitude, decimal longitude);
 
         [OperationContract]
-        void UpdateUserProfile(int userId, string firstName, string lastName, string email);
+        void UpdateUserProfile(int userId, string firstName, string lastName, string email, string imageUrl);
 
         [OperationContract]
         IEnumerable<PostModel> GetLatestPosts(int from, int to);
@@ -71,5 +71,8 @@ namespace CinguettioDataService
 
         [OperationContract]
         void UpdatePost(int postId, string title, string content);
+
+        [OperationContract]
+        IEnumerable<UserModel> GetUsers(int from, int to);
     }
 }
