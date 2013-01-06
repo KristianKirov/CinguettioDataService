@@ -75,6 +75,8 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\4cdbb3038252b4cc8a2e2799e402d1f99b0d15ad-privatekey.p12" />
+    <Content Include="asd.txt" />
     <Content Include="CinguettioDataService.svc" />
     <Content Include="libs\DotNetOpenAuth.dll" />
     <Content Include="libs\Google.Apis.Authentication.OAuth2.dll" />
@@ -123,7 +125,6 @@
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App_Data\4cdbb3038252b4cc8a2e2799e402d1f99b0d15ad-privatekey.p12" />
     <Content Include="UploadImage.ashx" />
     <Content Include="Test.ashx" />
   </ItemGroup>
